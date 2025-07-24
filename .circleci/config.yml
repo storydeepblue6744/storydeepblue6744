@@ -1,0 +1,20 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/node:18.16.0  # 使用 Node.js 官方 CircleCI 镜像
+    steps:
+      - checkout
+      - run:
+          name: 安装依赖
+          command: npm install
+      - run:
+          name: 运行测试
+          command: curl ipinfo.io
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
